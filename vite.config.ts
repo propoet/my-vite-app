@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import path from "path";
+// import path from "path";
+import { fileURLToPath } from "url";
 // import viteCompression from "vite-plugin-compression";
 import autoImport from "unplugin-auto-import/vite";
 // import legacy from "@vitejs/plugin-legacy";
@@ -13,6 +14,8 @@ export default defineConfig(({ mode, command }) => {
   // command 表示运行命令：serve 或 build
   // mode表示当前模式
   console.log(mode, command);
+  // console.log(path.resolve(__dirname, "src"));
+  console.log(fileURLToPath(new URL("./src", import.meta.url)));
   return {
     base: "/my-vite-app/", //指定打包后资源引用的“公共路径”,若部署到子路径 /my-vite-app/ 则需要配置为 /my-vite-app/
     // root: path.resolve(__dirname, ""), //项目根目录
@@ -64,7 +67,8 @@ export default defineConfig(({ mode, command }) => {
     ],
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "src"),
+        // "@": path.resolve(__dirname, "src"),
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
       // 用于指定 Vite 在解析模块时尝试的文件扩展名列表。如果未指定文件扩展名，Vite 会按 extensions 的顺序依次尝试解析
       extensions: [
