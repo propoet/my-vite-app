@@ -12,5 +12,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
+    SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
   }
 }

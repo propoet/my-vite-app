@@ -9,6 +9,7 @@ const { count, increment } = useCounter();
   <p>{{ message }}</p>
   <p>{{ count }}</p>
   <button @click="increment">Increment</button>
+  <SvgIcon name="vue"></SvgIcon>
 </template>
 
 <style scoped>

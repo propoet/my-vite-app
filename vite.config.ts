@@ -9,6 +9,8 @@ import Components from "unplugin-vue-components/vite";
 // import Inspect from "vite-plugin-inspect";
 // import importToCDN from "vite-plugin-cdn-import";
 import { visualizer } from "rollup-plugin-visualizer";
+
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 // https://vite.dev/config/
 export default defineConfig(({ mode, command }) => {
   // command 表示运行命令：serve 或 build
@@ -21,6 +23,13 @@ export default defineConfig(({ mode, command }) => {
     // root: path.resolve(__dirname, ""), //项目根目录
     plugins: [
       vue(),
+
+      createSvgIconsPlugin({
+        iconDirs: [
+          fileURLToPath(new URL("./src/assets/icons", import.meta.url)),
+        ],
+        symbolId: "icon-[name]",
+      }),
       // CDN 导入插件：将指定依赖替换为 CDN 链接（仅在构建时生效）
       // importToCDN({
       //   modules: [
